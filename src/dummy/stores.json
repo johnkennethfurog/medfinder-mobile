@@ -1,0 +1,44 @@
+[
+  {
+    "Name": "Mercury Drugs Store",
+    "Address": "Balibago, Sta. Rosa Laguna",
+    "Distance": "2.5 km",
+    "IsOpen": true,
+    "ContactInfo": "(+63) 920 2215 0291",
+    "StoreHours": "8am - 8pm",
+    "Location": {
+      "longitude": 121.0898822,
+      "latitude": 14.3031696
+    },
+    "Medicine": [
+      {
+        "brandName": "Biogesic",
+        "genericName": "Paracetamol",
+        "size": "50 mg",
+        "price": "PHP 4.00",
+        "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDyDpgRbIZHQdwgugJX1FP9CS1IDdb6OTYDkANW7DlQ9EnifSx&s"
+      },
+      {
+        "brandName": "Alaxan",
+        "genericName": "Ibuprofen,Paracetamol",
+        "size": "500 mg",
+        "price": "PHP 6.00",
+        "icon": "https://pbs.twimg.com/profile_images/705691653768523776/kCjbR7yN_400x400.jpg"
+      },
+      {
+        "brandName": "Neozep Forte",
+        "genericName": "Phenylephrine HCI, Chlorphenamine",
+        "size": "250 mg",
+        "price": "PHP 6.00",
+        "icon": "https://www.rosepharmacy.com/ph1/wp-content/uploads/2016/09/36224.png"
+      },
+      {
+        "brandName": "Rite Med",
+        "genericName": "Co-Amoxiclav",
+        "size": "500 mg",
+        "price": "PHP 12.00",
+        "icon": "https://pbs.twimg.com/profile_images/705691653768523776/kCjbR7yN_400x400.jpg"
+      }
+    ]
+  }
+]
