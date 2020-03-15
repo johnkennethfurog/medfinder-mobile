@@ -33,9 +33,6 @@ const Search = ({
           <TextInput
             placeholder={placeholder}
             value={value}
-            onEndEditing={() => {
-              console.log('onEndEditing');
-            }}
             onChangeText={keyword => {
               onTextChange(keyword);
             }}

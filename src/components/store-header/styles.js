@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   title: {
-    color: Colors.blue,
+    color: Colors.gray,
     fontSize: 18,
     fontWeight: 'bold',
   },

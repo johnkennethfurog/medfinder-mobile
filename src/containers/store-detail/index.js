@@ -1,10 +1,16 @@
 import React from 'react';
-import {View, Image, Text, ScrollView, FlatList, Linking} from 'react-native';
+import {
+  View,
+  Image,
+  Text,
+  ScrollView,
+  FlatList,
+  Linking,
+  SafeAreaView,
+} from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {Marker} from 'react-native-maps';
 import {connect} from 'react-redux';
-
-import {clearStore} from '../../actions/store';
 
 import MedicineCard from '../../components/medicine-card';
 import Button from '../../components/button';
@@ -57,7 +63,6 @@ class StoreDetail extends React.PureComponent {
   };
 
   onGotoCart = () => {
-    this.props.dispatch(clearStore());
     this.props.navigation.popToTop();
   };
 
@@ -68,7 +73,6 @@ class StoreDetail extends React.PureComponent {
         title={store.Name}
         onBack={this.onBackClick}
         subTitle={`Store Hours: ${store.StoreHours}`}
-        src={require('../../images/generika.jpg')}
       />
     );
   }
@@ -127,7 +131,7 @@ class StoreDetail extends React.PureComponent {
   render() {
     const {store} = this.props.navigation.state.params;
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <FlatList
           data={store.Medicines}
           ListHeaderComponent={this.renderHeader(store)}
@@ -137,7 +141,7 @@ class StoreDetail extends React.PureComponent {
             return <MedicineCard medicine={item} />;
           }}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }

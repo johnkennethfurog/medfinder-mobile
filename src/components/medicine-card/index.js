@@ -8,11 +8,6 @@ import styles from './styles';
 const MedicineCard = ({medicine, onRemove}) => {
   return (
     <View style={styles.container}>
-      <Image
-        resizeMode="cover"
-        style={styles.icon}
-        source={{uri: medicine.icon}}
-      />
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{medicine.BrandName}</Text>
         <Text style={styles.subTitle}>{medicine.GenericName}</Text>

@@ -1,5 +1,13 @@
 import React from 'react';
-import {View, Image, Text, FlatList} from 'react-native';
+import {
+  View,
+  Image,
+  Text,
+  FlatList,
+  Safe,
+  SafeAreaView,
+  Alert,
+} from 'react-native';
 import {connect} from 'react-redux';
 
 import {getMedicineCart, removeFromCart} from '../../actions/medicine';
@@ -51,15 +59,19 @@ class Home extends React.PureComponent {
   componentDidUpdate(prevProps, prevState, snapshot) {
     const {stores} = this.props;
     //    console.log('componentDidUpdate', stores);
-    if (prevProps.stores !== stores && stores.length > 0) {
-      this.props.navigation.navigate('StoreList', {stores});
+    if (prevProps.stores !== stores) {
+      if (stores.length > 0) {
+        this.props.navigation.navigate('StoreList', {stores});
+      } else {
+        Alert.alert('No store found');
+      }
     }
   }
 
   render() {
     const {medicines, isLoading} = this.props;
     return (
-      <View style={{flex: 1}}>
+      <SafeAreaView style={{flex: 1}}>
         <View style={styles.container}>
           <Search
             isInitial={true}
@@ -86,7 +98,7 @@ class Home extends React.PureComponent {
           />
         </View>
         <Loading isVisible={isLoading} />
-      </View>
+      </SafeAreaView>
     );
   }
 }

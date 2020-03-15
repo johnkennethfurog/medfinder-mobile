@@ -31,12 +31,6 @@ export default function store(state = initialState, action) {
       };
     }
 
-    case `${CLEAR_STORE}`: {
-      return {
-        data: [],
-        isLoading: false,
-      };
-    }
     default:
       return state;
   }

@@ -6,26 +6,23 @@ import Colors from '../../utils/colors';
 import styles from './styles';
 
 const StoreCard = ({store, onStoreSelect}) => {
+  const statusIndicator = store.IsOpen ? Colors.green : 'red';
+
   return (
     <TouchableOpacity
       onPress={() => {
         onStoreSelect(store);
       }}>
       <View style={styles.container}>
-        <Image
-          resizeMode="cover"
-          style={styles.icon}
-          source={require('../../images/generika.jpg')}
-        />
         <View style={styles.infoContainer}>
           <Text style={styles.title}>{store.Name}</Text>
           <Text style={styles.subTitle}>
-            <Text style={{fontWeight: 'bold'}}>{store.Address}</Text>
-            {` | ${store.distance} km`}
+            <Text>{store.Address}</Text> |
+            <Text style={{fontWeight: 'bold'}}> {`${store.distance} km`}</Text>
           </Text>
           <Text style={styles.subTitle}>
-            <Text style={{fontWeight: 'bold', color: Colors.green}}>
-              {store.IsOpen ? 'Open' : 'Close'}
+            <Text style={{fontWeight: 'bold', color: statusIndicator}}>
+              {store.IsOpen ? 'Open' : 'Closed'}
             </Text>
             {` | Store Hours: ${store.StoreHours}`}
           </Text>
@@ -36,7 +33,11 @@ const StoreCard = ({store, onStoreSelect}) => {
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item}) => {
               return (
-                <Text style={[styles.subTitle, {flex: 1, fontSize: 13}]}>
+                <Text
+                  style={[
+                    styles.subTitle,
+                    {fontWeight: 'bold', flex: 1, fontSize: 13},
+                  ]}>
                   {'\u2022' + ' '}
                   {item.BrandName}
                 </Text>

@@ -1,8 +1,7 @@
 import React from 'react';
-import {View, Image, Text, FlatList} from 'react-native';
+import {View, Image, Text, FlatList, SafeAreaView} from 'react-native';
 import {connect} from 'react-redux';
 
-import {clearStore} from '../../actions/store';
 import StoreCard from '../../components/store-card';
 import StoreHeader from '../../components/store-header';
 
@@ -14,13 +13,12 @@ class StoreList extends React.PureComponent {
   };
 
   onGotoCart = () => {
-    this.props.dispatch(clearStore());
     this.props.navigation.popToTop();
   };
   render() {
     const {stores} = this.props.navigation.state.params;
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <StoreHeader
           gotoCart={this.onGotoCart}
           title={'List of Drug stores'}
@@ -35,7 +33,7 @@ class StoreList extends React.PureComponent {
             );
           }}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }

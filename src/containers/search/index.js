@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, Text, FlatList} from 'react-native';
+import {View, Image, Text, FlatList, SafeAreaView} from 'react-native';
 import {connect} from 'react-redux';
 
 import {
@@ -41,7 +41,7 @@ class SearchScreen extends React.PureComponent {
       this.timer = setTimeout(() => {
         console.log('searching for ' + keyword);
         this.props.dispatch(searchMedicine(keyword));
-      }, 100);
+      }, 400);
     }
 
     if (isEmpty !== isKeywordEmpty) {
@@ -88,7 +88,7 @@ class SearchScreen extends React.PureComponent {
     const {recentSearch, searchResult, isSearching} = this.props;
 
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <Search
           icon={require('../../images/search-gray.png')}
           placeholder={'Search for Brand name or Generic name'}
@@ -98,38 +98,19 @@ class SearchScreen extends React.PureComponent {
           value={this.state.keyword}
         />
 
-        {this.state.isKeywordEmpty ? (
-          <View
-            style={{
-              flex: 1,
-            }}>
-            <Text style={styles.recentSearchText}>Recent Searches</Text>
-            <FlatList
-              data={recentSearch}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({item}) => {
-                return <MedicineCard medicine={item} />;
-              }}
-            />
-          </View>
-        ) : (
-          <View style={{flex: 1}}>
-            <FlatList
-              data={searchResult}
-              ListEmptyComponent={this.renderEmptyComponent}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({item}) => {
-                return (
-                  <SearchResultCard
-                    medicine={item}
-                    onAddItem={this.onAddItem}
-                  />
-                );
-              }}
-            />
-          </View>
-        )}
-      </View>
+        <View style={{flex: 1}}>
+          <FlatList
+            data={searchResult}
+            ListEmptyComponent={this.renderEmptyComponent}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item}) => {
+              return (
+                <SearchResultCard medicine={item} onAddItem={this.onAddItem} />
+              );
+            }}
+          />
+        </View>
+      </SafeAreaView>
     );
   }
 }

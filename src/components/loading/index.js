@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Animated, Image, Easing, Text} from 'react-native';
+import {View, Animated, Image, Easing, Text, SafeAreaView} from 'react-native';
 
 import styles from './styles';
 

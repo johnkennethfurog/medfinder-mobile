@@ -1,9 +1,11 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
-    width: '100%',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',

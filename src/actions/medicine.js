@@ -14,14 +14,18 @@ import {medfinderApiRequest} from '../client/client';
 import medicineData from '../dummy/medicine.json';
 
 export const searchMedicine = keyword => dispatch => {
-  SInfo.getItem(MEDICINE_CART, {}).then(value => {
+  SInfo.getItem(MEDICINE_CART, {}).then(storedMedicines => {
     dispatch({
       type: SEARCH_MEDICINE,
       payload: medfinderApiRequest()
-        .get('/medicines/search/' + keyword)
+        .get('medicines/search/' + keyword)
         .then(rspns => {
-          const medicines = JSON.parse(value);
-          console.log(SEARCH_MEDICINE, rspns);
+          let medicines = [];
+
+          if (storedMedicines) {
+            medicines = JSON.parse(storedMedicines);
+          }
+
           let searchResult = rspns.data.data;
 
           if (medicines && medicines.length > 0 && searchResult) {
@@ -43,8 +47,11 @@ export const searchMedicine = keyword => dispatch => {
 };
 
 export const getMedicineCart = () => dispatch => {
-  SInfo.getItem(MEDICINE_CART, {}).then(value => {
-    const medicines = JSON.parse(value);
+  SInfo.getItem(MEDICINE_CART, {}).then(storedMedicines => {
+    let medicines = [];
+    if (storedMedicines) {
+      medicines = JSON.parse(storedMedicines);
+    }
     dispatch({
       type: GET_MEDICINE_CART,
       payload: medicines,
@@ -73,12 +80,14 @@ export const removeFromCart = medicineId => dispatch => {
 };
 
 export const addToCart = medicine => dispatch => {
-  SInfo.getItem(MEDICINE_CART, {}).then(value => {
-    let medicines = JSON.parse(value);
-    if (!medicines) {
-      medicines = [];
+  SInfo.getItem(MEDICINE_CART, {}).then(storedMedicines => {
+    let medicines = [];
+    if (storedMedicines) {
+      medicines = JSON.parse(storedMedicines);
     }
+
     medicines.push(medicine);
+
     SInfo.setItem(MEDICINE_CART, JSON.stringify(medicines), {}).then(() => {
       dispatch(getMedicineCart());
       dispatch({
