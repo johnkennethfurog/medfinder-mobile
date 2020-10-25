@@ -39,7 +39,6 @@ class SearchScreen extends React.PureComponent {
 
     if (!isEmpty) {
       this.timer = setTimeout(() => {
-        console.log('searching for ' + keyword);
         this.props.dispatch(searchMedicine(keyword));
       }, 400);
     }

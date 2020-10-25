@@ -24,7 +24,6 @@ export default function store(state = initialState, action) {
 
     case `${SEARCH_STORE}_FULFILLED`: {
       const data = action.payload.data.data;
-      console.log(`${SEARCH_STORE}_FULFILLED`, data);
       return {
         data,
         isLoading: false,

@@ -30,17 +30,23 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     color: Colors.gray,
-    fontSize: 14,
+    fontSize: 12,
   },
   rightArrow: {
     width: 15,
     height: 15,
-    marginLeft: 5,
+    marginHorizontal: 10,
   },
   horizontalLine: {
     borderBottomColor: 'black',
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginVertical: 10,
+  },
+  healthCenterNote: {
+    color: Colors.green,
+    fontSize: 13,
+    fontStyle: 'italic',
+    marginTop: 10,
   },
 });
 

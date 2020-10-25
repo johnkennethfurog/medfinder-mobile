@@ -43,7 +43,9 @@ export const searchStore = (medicines, currentPosition) => dispatch => {
           store.Medicines = store.Medicines.map(med => {
             const {Margin, Srp} = med;
 
-            if (Margin === 0) {
+            if (Srp === 0) {
+              med.Price = `FREE!`;
+            } else if (Margin === 0) {
               med.Price = `PHP ${Srp.toFixed(2)}`;
             } else {
               const marginPrice = Srp * Margin;

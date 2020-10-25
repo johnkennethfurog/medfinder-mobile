@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: Colors.blue,
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: 'bold',
   },
   subTitle: {
@@ -32,14 +32,19 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   price: {
-    color: Colors.gray,
-    fontSize: 14,
-    fontWeight: 'bold',
+    fontSize: 13,
     alignSelf: 'flex-start',
   },
   btnClose: {
     width: 25,
     height: 25,
+  },
+  needPrescription: {
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    fontSize: 12,
+    color: '#546e7a',
+    marginTop: 10,
   },
 });
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, TouchableOpacity, Text, Image, FlatList} from 'react-native';
+import MedicineCard from '../../components/medicine-card';
 
 import Colors from '../../utils/colors';
 
@@ -18,32 +19,32 @@ const StoreCard = ({store, onStoreSelect}) => {
           <Text style={styles.title}>{store.Name}</Text>
           <Text style={styles.subTitle}>
             <Text>{store.Address}</Text> |
-            <Text style={{fontWeight: 'bold'}}> {`${store.distance} km`}</Text>
+            <Text style={{fontWeight: 'bold'}}>
+              {`${store.distance} km away`}
+            </Text>
           </Text>
-          <Text style={styles.subTitle}>
+          <Text style={[styles.subTitle, {marginBottom: 10}]}>
             <Text style={{fontWeight: 'bold', color: statusIndicator}}>
               {store.IsOpen ? 'Open' : 'Closed'}
             </Text>
             {` | Store Hours: ${store.StoreHours}`}
           </Text>
-          <View style={styles.horizontalLine} />
-          <FlatList
-            numColumns={2}
-            data={store.Medicines}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({item}) => {
-              return (
-                <Text
-                  style={[
-                    styles.subTitle,
-                    {fontWeight: 'bold', flex: 1, fontSize: 13},
-                  ]}>
-                  {'\u2022' + ' '}
-                  {item.BrandName}
-                </Text>
-              );
-            }}
-          />
+          {store.Medicines.map(med => {
+            return (
+              <MedicineCard
+                key={med._id}
+                medicine={med}
+                priceAlignRight={false}
+              />
+            );
+          })}
+
+          {store.IsHealthCentre && (
+            <Text style={[styles.healthCenterNote]}>
+              This is a health center, in here you can avail the medicine your
+              are looking for free or cheaper price.
+            </Text>
+          )}
         </View>
         <Image
           resizeMode="cover"

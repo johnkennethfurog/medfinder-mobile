@@ -15,7 +15,6 @@ const initialState = {
 };
 
 export default function medicine(state = initialState, action) {
-  console.log(action.type);
   switch (action.type) {
     case `${SEARCH_MEDICINE}_REJECTED`: {
       return {
@@ -35,8 +34,6 @@ export default function medicine(state = initialState, action) {
     case `${SEARCH_MEDICINE}_FULFILLED`: {
       const searchResult = action.payload;
 
-      console.log(`${SEARCH_MEDICINE}_FULFILLED`, searchResult);
-
       return {
         ...state,
         searchResult,
@@ -55,11 +52,9 @@ export default function medicine(state = initialState, action) {
 
     case `${MEDICINE_ADDED}`: {
       const medicine = action.payload;
-      console.log('medicine', medicine);
       const medIndex = state.searchResult.findIndex(
         x => x._id === medicine._id,
       );
-      console.log('medIndex', medIndex);
       state.searchResult[medIndex].isAdded = true;
       const clonedSearchResult = JSON.parse(JSON.stringify(state.searchResult));
       return {

@@ -50,7 +50,6 @@ class StoreDetail extends React.PureComponent {
       store.Location.coordinates[0]
     }&travelmode=driving`;
 
-    console.log('onNavigate', mapUrl);
     Linking.openURL(mapUrl);
   };
 

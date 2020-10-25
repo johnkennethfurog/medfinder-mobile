@@ -22,24 +22,10 @@ import {getCurrentLocation} from '../../utils/maps-utils';
 import styles from './styles';
 
 class Home extends React.PureComponent {
-  state = {
-    currentPosition: {},
-  };
+  state = {};
 
   componentDidMount() {
     this.props.dispatch(getMedicineCart());
-    getCurrentLocation()
-      .then(position => {
-        const currentPosition = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
-
-        this.setState({currentPosition});
-      })
-      .catch(error => {
-        console.log('currentPosition - error', error);
-      });
   }
 
   onRemoveItem = medicineId => {
@@ -52,8 +38,17 @@ class Home extends React.PureComponent {
 
   onSearchStore = () => {
     const {medicines} = this.props;
-    const {currentPosition} = this.state;
-    this.props.dispatch(searchStore(medicines, currentPosition));
+    getCurrentLocation()
+      .then(position => {
+        const currentPosition = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        this.props.dispatch(searchStore(medicines, currentPosition));
+      })
+      .catch(error => {
+        Alert.alert('Unable to get your current position.');
+      });
   };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -104,7 +99,6 @@ class Home extends React.PureComponent {
 }
 
 const mapStateToProps = state => {
-  console.log(state.store);
   return {
     medicines: state.medicine.data,
     stores: state.store.data,

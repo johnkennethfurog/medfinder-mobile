@@ -5,7 +5,6 @@ import styles from './styles';
 
 const Loading = ({isVisible}) => {
   if (isVisible) {
-    console.log('Loading visible');
     this.state = {spinAnim: new Animated.Value(0)};
     Animated.loop(
       Animated.timing(this.state.spinAnim, {
@@ -28,7 +27,6 @@ const Loading = ({isVisible}) => {
       </View>
     );
   } else {
-    console.log('Loading not visible');
     return null;
   }
 };
