@@ -5,7 +5,12 @@ import Colors from '../../utils/colors';
 
 import styles from './styles';
 
-const MedicineCard = ({medicine, onRemove, priceAlignRight = true}) => {
+const MedicineCard = ({
+  medicine,
+  onRemove,
+  showQty = true,
+  priceAlignRight = true,
+}) => {
   return (
     <View style={styles.container}>
       <View style={styles.infoContainer}>
@@ -19,6 +24,13 @@ const MedicineCard = ({medicine, onRemove, priceAlignRight = true}) => {
         <Text style={styles.subTitle}>{`${medicine.Size} ${
           medicine.UoM
         }`}</Text>
+
+        {showQty && (
+          <Text style={styles.subTitle}>{`${medicine.Qty} ${
+            medicine.Qty === 1 ? 'pc' : 'pcs'
+          } available`}</Text>
+        )}
+
         {medicine.NeedPresription && (
           <Text style={styles.needPrescription}>
             * This medicine needs prescription

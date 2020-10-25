@@ -82,7 +82,11 @@ class Home extends React.PureComponent {
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item}) => {
               return (
-                <MedicineCard medicine={item} onRemove={this.onRemoveItem} />
+                <MedicineCard
+                  showQty={false}
+                  medicine={item}
+                  onRemove={this.onRemoveItem}
+                />
               );
             }}
           />
